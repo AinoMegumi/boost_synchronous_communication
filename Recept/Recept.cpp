@@ -8,7 +8,7 @@ Recept::Recept(std::string ip, int port_num) {
 }
 
 void Recept::recept() {
-	this->acceptor->accept(*socket); // ‚±‚±‚ÅƒGƒ‰[‹N‚±‚µ‚Ä‚é
+	this->acceptor->accept(*socket);
 	this->str.reserve(1024);
 	boost::system::error_code error;
 	while (error != boost::asio::error::eof) {
