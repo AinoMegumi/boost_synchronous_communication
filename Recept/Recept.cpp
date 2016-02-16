@@ -2,7 +2,7 @@
 
 Recept::Recept(std::string ip, int port_num) {
 	this->acceptor = boost::asio::ip::tcp::acceptor(this->io_service, boost::asio::ip::tcp::endpoint(boost::asio::ip::address::from_string(ip), port_num));
-	boost::asio::ip::tcp::socket(this->io_service);
+	this->socket = boost::asio::ip::tcp::socket(this->io_service);
 	this->port_number = acceptor->local_endpoint().port();
 }
 
