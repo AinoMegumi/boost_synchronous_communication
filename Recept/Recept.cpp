@@ -10,9 +10,10 @@ Recept::Recept(std::string ip, int port_num) {
 void Recept::recept() {
 	this->acceptor->accept(*socket); // ‚±‚±‚ÅƒGƒ‰[‹N‚±‚µ‚Ä‚é
 	this->str.reserve(1024);
+	boost::array<char, 1024> buf;
 	boost::system::error_code error;
 	while (error != boost::asio::error::eof) {
-		std::size_t len = socket->read_some(boost::asio::buffer(this->buf), error);
-		this->str.insert(this->str.end(), this->buf.data(), this->buf.data() + len);
+		std::size_t len = socket->read_some(boost::asio::buffer(buf), error);
+		this->str.insert(this->str.end(), buf.data(), buf.data() + len);
 	}
 }
