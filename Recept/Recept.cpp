@@ -1,8 +1,9 @@
 #include"Recept.h"
 
 Recept::Recept(std::string ip, int port_num) {
-	this->acceptor = boost::asio::ip::tcp::acceptor(this->io_service, boost::asio::ip::tcp::endpoint(boost::asio::ip::address::from_string(ip), port_num));
-	this->socket = boost::asio::ip::tcp::socket(this->io_service);
+	boost::asio::io_service io_service;
+	this->acceptor = boost::asio::ip::tcp::acceptor(io_service, boost::asio::ip::tcp::endpoint(boost::asio::ip::address::from_string(ip), port_num));
+	this->socket = boost::asio::ip::tcp::socket(io_service);
 	this->port_number = acceptor->local_endpoint().port();
 }
 

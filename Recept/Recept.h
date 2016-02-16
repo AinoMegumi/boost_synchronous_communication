@@ -9,7 +9,6 @@
 class Recept {
 private:
 	std::string str;
-	boost::asio::io_service io_service;
 	boost::array<char, 1024> buf;
 	boost::optional<boost::asio::ip::tcp::acceptor> acceptor;
 	boost::optional<boost::asio::ip::tcp::socket> socket;
