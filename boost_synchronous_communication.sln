@@ -9,26 +9,16 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Recept", "Recept\Recept.vcx
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{64D823C9-0044-4224-9A18-7D0A250E7EE7}.Debug|x64.ActiveCfg = Debug|x64
-		{64D823C9-0044-4224-9A18-7D0A250E7EE7}.Debug|x64.Build.0 = Debug|x64
 		{64D823C9-0044-4224-9A18-7D0A250E7EE7}.Debug|x86.ActiveCfg = Debug|Win32
 		{64D823C9-0044-4224-9A18-7D0A250E7EE7}.Debug|x86.Build.0 = Debug|Win32
-		{64D823C9-0044-4224-9A18-7D0A250E7EE7}.Release|x64.ActiveCfg = Release|x64
-		{64D823C9-0044-4224-9A18-7D0A250E7EE7}.Release|x64.Build.0 = Release|x64
 		{64D823C9-0044-4224-9A18-7D0A250E7EE7}.Release|x86.ActiveCfg = Release|Win32
 		{64D823C9-0044-4224-9A18-7D0A250E7EE7}.Release|x86.Build.0 = Release|Win32
-		{BC00058E-C1A4-4B5E-91B3-DE8044908243}.Debug|x64.ActiveCfg = Debug|x64
-		{BC00058E-C1A4-4B5E-91B3-DE8044908243}.Debug|x64.Build.0 = Debug|x64
 		{BC00058E-C1A4-4B5E-91B3-DE8044908243}.Debug|x86.ActiveCfg = Debug|Win32
 		{BC00058E-C1A4-4B5E-91B3-DE8044908243}.Debug|x86.Build.0 = Debug|Win32
-		{BC00058E-C1A4-4B5E-91B3-DE8044908243}.Release|x64.ActiveCfg = Release|x64
-		{BC00058E-C1A4-4B5E-91B3-DE8044908243}.Release|x64.Build.0 = Release|x64
 		{BC00058E-C1A4-4B5E-91B3-DE8044908243}.Release|x86.ActiveCfg = Release|Win32
 		{BC00058E-C1A4-4B5E-91B3-DE8044908243}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection

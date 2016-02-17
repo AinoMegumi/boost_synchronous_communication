@@ -1,3 +1,11 @@
+#if !defined( WINVER ) || ( WINVER < 0x0501 )
+#undef  WINVER
+#define WINVER 0x0501
+#endif
+#if !defined( _WIN32_WINNT ) || ( _WIN32_WINNT < 0x0501 )
+#undef  _WIN32_WINNT
+#define _WIN32_WINNT 0x0501
+#endif
 #include<iostream>
 #include"Recept.h"
 
