@@ -1,13 +1,13 @@
-#pragma once
+ï»¿#pragma once
 #include<boost/asio.hpp>
 #include<boost/serialization/serialization.hpp>
 #include<boost/archive/binary_oarchive.hpp>
 
-template<typename T> void reserve_ip_connect(T data, std::string ip, int port = 0) {
+template<typename T> void reserve_ip_connect(const T& data, std::string ip, int port = 0) {
 	std::ostringstream ostr;
 	boost::archive::binary_oarchive oa(ostr);
-	oa << (T const&)data;
-	//ƒ\ƒPƒbƒgÚ‘±
+	oa << data;
+	//ã‚½ã‚±ãƒƒãƒˆæ¥ç¶š
 	boost::asio::io_service ios;
 	boost::asio::ip::tcp::socket socket(ios);
 	boost::system::error_code error;
@@ -15,10 +15,10 @@ template<typename T> void reserve_ip_connect(T data, std::string ip, int port = 
 	endpoint.port();
 	socket.connect(endpoint);
 	std::string buf = ostr.str();
-	//‘—M
+	//é€ä¿¡
 	socket.send(boost::asio::buffer(buf.data(), buf.size()));
 }
 
-template<typename T> void internal_connect(T data, int port = 0) {
-	reserve_ip_connect<T>(data, "127.0.0.1", port);
+template<typename T> void internal_connect(const T& data, int port = 0) {
+	reserve_ip_connect<T>(data, "60.97.14.250", port);
 }

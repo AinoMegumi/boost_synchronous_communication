@@ -10,7 +10,7 @@
 
 int main() {
 	try {
-		internal_connect<int>(1, 128);
+		internal_connect(std::string("arikitari_na_world!"), 256);
 		return 0;
 	}
 	catch (std::exception &er) {
