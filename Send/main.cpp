@@ -7,10 +7,15 @@
 #define _WIN32_WINNT 0x0501
 #endif
 #include"Send.h"
+#include<iostream>
 
 int main() {
 	try {
-		internal_connect(std::string("arikitari_na_world!"), 256);
+		std::string str;
+		std::cin >> str;
+		Send s(asynchro);
+		s.input_data<int>(15);
+		s.send();
 		return 0;
 	}
 	catch (std::exception &er) {

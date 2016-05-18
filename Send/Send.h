@@ -1,24 +1,27 @@
-﻿#pragma once
+#pragma once
+#include<string>
 #include<boost/asio.hpp>
+#include<boost/array.hpp>
+#include<boost/optional.hpp>
 #include<boost/serialization/serialization.hpp>
 #include<boost/archive/binary_oarchive.hpp>
 
-template<typename T> void reserve_ip_connect(const T& data, std::string ip, int port = 0) {
-	std::ostringstream ostr;
-	boost::archive::binary_oarchive oa(ostr);
-	oa << data;
-	//ソケット接続
-	boost::asio::io_service ios;
-	boost::asio::ip::tcp::socket socket(ios);
-	boost::system::error_code error;
-	boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::address::from_string(ip), port);
-	endpoint.port();
-	socket.connect(endpoint);
-	std::string buf = ostr.str();
-	//送信
-	socket.send(boost::asio::buffer(buf.data(), buf.size()));
-}
+enum ConnectionType {
+	synchro, asynchro
+};
 
-template<typename T> void internal_connect(const T& data, int port = 0) {
-	reserve_ip_connect<T>(data, "60.97.14.250", port);
-}
+class Send {
+private:
+	ConnectionType type;
+	boost::asio::io_service io;
+	boost::optional<boost::asio::ip::tcp::socket> socket;
+	boost::optional<boost::asio::ip::tcp::endpoint> endpoint;
+	std::ostringstream ostr;
+	boost::optional<boost::archive::binary_oarchive> oa;
+	void on_connect(const boost::system::error_code& error);
+public:
+	Send(ConnectionType type, const std::string& ip, const unsigned short port = 0);
+	Send(ConnectionType type, const unsigned short port = 0);
+	template<typename T> void input_data(const T& data);
+	void send();
+};
