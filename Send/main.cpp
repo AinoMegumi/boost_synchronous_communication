@@ -11,11 +11,12 @@
 
 int main() {
 	try {
+		std::ostringstream ostr;
 		std::string str;
 		std::cin >> str;
-		Send s(asynchro);
+		Send s(asynchro, ostr);
 		s.input_data<int>(15);
-		s.send();
+		s.send(ostr);
 		return 0;
 	}
 	catch (std::exception &er) {
