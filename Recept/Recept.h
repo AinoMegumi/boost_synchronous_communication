@@ -16,7 +16,6 @@ private:
 	boost::asio::io_service io_service;
 	boost::optional<boost::asio::ip::tcp::acceptor> acceptor;
 	boost::optional<boost::asio::ip::tcp::socket> socket;
-	void on_connect(const boost::system::error_code& error);
 public:
 	Recept(const std::string& ip, const unsigned short port_num = 0);
 	Recept(const unsigned short port_num = 0);

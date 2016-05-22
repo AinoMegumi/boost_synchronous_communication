@@ -7,7 +7,6 @@
 #define _WIN32_WINNT 0x0501
 #endif
 #include "Send.h"
-#include <boost/bind.hpp>
 #include <regex>
 #include <numeric>
 #include <stdexcept>
@@ -50,7 +49,9 @@ void Send::send(const std::ostringstream& ostr) {
 		this->socket->send(boost::asio::buffer(buf.data(), buf.size()));
 	}
 	else {
-		this->socket->async_connect(*this->endpoint, boost::bind(&Send::on_connect, this, placeholders::error));
+		this->socket->async_connect(*this->endpoint, [](const boost::system::error_code& error) {
+			std::cout << ((!error) ? "connect success" : error.message()) << std::endl;
+		});
 		this->socket->async_send(boost::asio::buffer(buf.data(), buf.size()),
 			[](const boost::system::error_code& error, std::size_t size) {
 				if (!error) std::cout << "send success" << std::endl;
@@ -58,9 +59,4 @@ void Send::send(const std::ostringstream& ostr) {
 			}
 		);
 	}
-}
-
-void Send::on_connect(const boost::system::error_code& error) {
-	if (!error) std::cout << "connect success" << std::endl;
-	else std::cout << error.message() << std::endl;
 }

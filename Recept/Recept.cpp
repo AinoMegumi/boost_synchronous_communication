@@ -7,7 +7,6 @@
 #define _WIN32_WINNT 0x0501
 #endif
 #include "Recept.h"
-#include <boost/bind.hpp>
 #include <iostream>
 
 Recept::Recept(const std::string& ip, const unsigned short port_num) {
@@ -24,7 +23,9 @@ Recept::Recept(const unsigned short port_num) {
 
 void Recept::recept(ConnectionType type) {
 	if (type == synchro) this->acceptor->accept(*this->socket);
-	else this->acceptor->async_accept(*this->socket, boost::bind(&Recept::on_connect, this, boost::asio::placeholders::error));
+	else this->acceptor->async_accept(*this->socket, [](const boost::system::error_code& error) {
+		std::cout << ((!error) ? "connect success" : error.message()) << std::endl;
+	});
 	this->str.reserve(1024);
 	boost::system::error_code error;
 	while (error != boost::asio::error::eof) {
@@ -32,9 +33,4 @@ void Recept::recept(ConnectionType type) {
 		std::size_t len = socket->read_some(boost::asio::buffer(buf), error);
 		this->str.insert(this->str.end(), buf.data(), buf.data() + len);
 	}
-}
-
-void Recept::on_connect(const boost::system::error_code& error) {
-	if (!error) std::cout << "connect success" << std::endl;
-	else std::cout << error.message() << std::endl;
 }

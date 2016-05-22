@@ -17,7 +17,6 @@ private:
 	boost::optional<boost::asio::ip::tcp::socket> socket;
 	boost::optional<boost::asio::ip::tcp::endpoint> endpoint;
 	boost::optional<boost::archive::binary_oarchive> oa;
-	void on_connect(const boost::system::error_code& error);
 	bool is_ipv4_address(const std::string& ip);
 public:
 	Send(ConnectionType type, const std::string& ip, std::ostringstream& ostr, const unsigned short port = 0);
