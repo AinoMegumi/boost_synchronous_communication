@@ -1,4 +1,4 @@
-#if !defined( WINVER ) || ( WINVER < 0x0501 )
+ï»¿#if !defined( WINVER ) || ( WINVER < 0x0501 )
 #undef  WINVER
 #define WINVER 0x0501
 #endif
@@ -17,7 +17,7 @@ Send::Send(ConnectionType type, const std::string& ip, std::ostringstream& ostr,
 	: type(type), oa(ostr) {
 	this->socket = ip::tcp::socket(this->io);
 	if (this->is_ipv4_address(ip)) this->endpoint = ip::tcp::endpoint(ip::address_v4::from_string(ip), port);
-	else throw std::runtime_error("IPv4ˆÈŠO‚Ì•¶š—ñ‚ª“ü—Í‚³‚ê‚Ü‚µ‚½B");
+	else throw std::runtime_error("IPv4ä»¥å¤–ã®æ–‡å­—åˆ—ãŒå…¥åŠ›ã•ã‚Œã¾ã—ãŸã€‚");
 }
 
 Send::Send(ConnectionType type, std::ostringstream& ostr, const unsigned short port) : type(type), oa(ostr) {
@@ -26,7 +26,7 @@ Send::Send(ConnectionType type, std::ostringstream& ostr, const unsigned short p
 }
 
 bool Send::is_ipv4_address(const std::string& ip) {
-	std::regex reg(R"((\d{ 1,3 })\.(\d{ 1,3 })\.(\d{ 1,3 })\.(\d{ 1,3 }))"); // ‚±‚±‚©‚ç“ä‚ÌException
+	std::regex reg(R"((\d{ 1,3 })\.(\d{ 1,3 })\.(\d{ 1,3 })\.(\d{ 1,3 }))"); // ã“ã“ã‹ã‚‰è¬ã®Exception
 	std::smatch match;
 	std::regex_search(ip, match, reg);
 	return (5 == match.size() &&

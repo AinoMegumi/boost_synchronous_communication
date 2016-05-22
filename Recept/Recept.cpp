@@ -1,4 +1,4 @@
-#if !defined( WINVER ) || ( WINVER < 0x0501 )
+﻿#if !defined( WINVER ) || ( WINVER < 0x0501 )
 #undef  WINVER
 #define WINVER 0x0501
 #endif

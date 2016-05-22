@@ -1,4 +1,4 @@
-#if !defined( WINVER ) || ( WINVER < 0x0501 )
+ï»¿#if !defined( WINVER ) || ( WINVER < 0x0501 )
 #undef  WINVER
 #define WINVER 0x0501
 #endif
@@ -18,6 +18,6 @@ int main() {
 		return 0;
 	}
 	catch (std::exception &er) {
-		return MessageBoxA(NULL, er.what(), "ƒGƒ‰[", MB_OK);
+		return MessageBoxA(NULL, er.what(), "ã‚¨ãƒ©ãƒ¼", MB_OK);
 	}
 }
