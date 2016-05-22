@@ -42,10 +42,6 @@ bool Send::is_ipv4_address(const std::string& ip) {
 	}));
 }
 
-template<typename T> void Send::input_data(const T& data) {
-	*this->oa << data;
-}
-
 void Send::send(const std::ostringstream& ostr) {
 	this->socket = ip::tcp::socket(this->io);
 	std::string buf = ostr.str();
@@ -55,16 +51,16 @@ void Send::send(const std::ostringstream& ostr) {
 	}
 	else {
 		this->socket->async_connect(*this->endpoint, boost::bind(&Send::on_connect, this, placeholders::error));
-		this->socket->async_send(boost::asio::buffer(buf.data(), buf.size()), &Send::on_send); // ビルドエラー原因箇所。おそらく引数異常
+		this->socket->async_send(boost::asio::buffer(buf.data(), buf.size()),
+			[](const boost::system::error_code& error, std::size_t size) {
+				if (!error) std::cout << "send success" << std::endl;
+				else std::cout << error.message() << std::endl;
+			}
+		); // ビルドエラー原因箇所。おそらく引数異常
 	}
 }
 
 void Send::on_connect(const boost::system::error_code& error) {
 	if (!error) std::cout << "connect success" << std::endl;
-	else std::cout << error.message() << std::endl;
-}
-
-void Send::on_send(const boost::system::error_code& error) {
-	if (!error) std::cout << "send success" << std::endl;
 	else std::cout << error.message() << std::endl;
 }

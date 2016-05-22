@@ -14,7 +14,7 @@ int main() {
 		std::ostringstream ostr;
 		std::string str;
 		std::cin >> str;
-		Send s(asynchro, ostr);
+		Send s(asynchro, str, ostr, 120);
 		s.input_data<int>(15);
 		s.send(ostr);
 		return 0;
