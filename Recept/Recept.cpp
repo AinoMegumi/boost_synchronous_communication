@@ -8,6 +8,7 @@
 #endif
 #include "Recept.h"
 #include <boost/bind.hpp>
+#include <iostream>
 
 Recept::Recept(const std::string& ip, const unsigned short port_num) {
 	this->acceptor = boost::asio::ip::tcp::acceptor(this->io_service, boost::asio::ip::tcp::endpoint(boost::asio::ip::address::from_string(ip), port_num));

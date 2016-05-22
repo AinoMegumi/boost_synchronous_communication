@@ -11,6 +11,7 @@
 #include <regex>
 #include <numeric>
 #include <stdexcept>
+#include <iostream>
 using namespace boost::asio;
 
 Send::Send(ConnectionType type, const std::string& ip, std::ostringstream& ostr, const unsigned short port)
