@@ -14,7 +14,6 @@ int main() {
 		Recept recept("127.0.0.1", 128);
 		recept.recept(asynchro);
 		std::string data = recept.get_data<std::string>();
-		/*std::string data = get_data<std::string>("127.0.0.1", 256);*/
 		std::cout << data << std::endl;
 		return 0;
 	}

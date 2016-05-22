@@ -17,8 +17,7 @@ Send::Send(ConnectionType type, const std::string& ip, std::ostringstream& ostr,
 	: type(type), oa(ostr) {
 	this->socket = ip::tcp::socket(this->io);
 	if (this->is_ipv4_address(ip)) this->endpoint = ip::tcp::endpoint(ip::address_v4::from_string(ip), port);
-	else /*if (this->is_ipv6_address(ip)) this->socket = ip::tcp::endpoint(ip::address_v6::from_string(ip), port);
-	else*/ throw std::runtime_error("IPv4以外の文字列が入力されました。");
+	else throw std::runtime_error("IPv4以外の文字列が入力されました。");
 }
 
 Send::Send(ConnectionType type, std::ostringstream& ostr, const unsigned short port) : type(type), oa(ostr) {
@@ -56,7 +55,7 @@ void Send::send(const std::ostringstream& ostr) {
 				if (!error) std::cout << "send success" << std::endl;
 				else std::cout << error.message() << std::endl;
 			}
-		); // ビルドエラー原因箇所。おそらく引数異常
+		);
 	}
 }
 
