@@ -27,7 +27,7 @@ Send::Send(ConnectionType type, std::ostringstream& ostr, const unsigned short p
 }
 
 bool Send::is_ipv4_address(const std::string& ip) {
-	std::regex reg(R"((\d{ 1,3 })\.(\d{ 1,3 })\.(\d{ 1,3 })\.(\d{ 1,3 }))");
+	std::regex reg(R"((\d{ 1,3 })\.(\d{ 1,3 })\.(\d{ 1,3 })\.(\d{ 1,3 }))"); // ‚±‚±‚©‚ç“ä‚ÌException
 	std::smatch match;
 	std::regex_search(ip, match, reg);
 	return (5 == match.size() &&
