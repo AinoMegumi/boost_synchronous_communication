@@ -1,10 +1,10 @@
 #pragma once
-#include<string>
-#include<boost/asio.hpp>
-#include<boost/array.hpp>
-#include<boost/optional.hpp>
-#include<boost/serialization/serialization.hpp>
-#include<boost/archive/binary_oarchive.hpp>
+#include <string>
+#include <boost/asio.hpp>
+#include <boost/array.hpp>
+#include <boost/optional.hpp>
+#include <boost/serialization/serialization.hpp>
+#include <boost/archive/binary_oarchive.hpp>
 
 enum ConnectionType {
 	synchro, asynchro

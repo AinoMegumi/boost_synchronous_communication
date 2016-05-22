@@ -6,11 +6,11 @@
 #undef  _WIN32_WINNT
 #define _WIN32_WINNT 0x0501
 #endif
-#include"Send.h"
-#include<boost/bind.hpp>
-#include<regex>
-#include<numeric>
-#include<stdexcept>
+#include "Send.h"
+#include <boost/bind.hpp>
+#include <regex>
+#include <numeric>
+#include <stdexcept>
 using namespace boost::asio;
 
 Send::Send(ConnectionType type, const std::string& ip, std::ostringstream& ostr, const unsigned short port)

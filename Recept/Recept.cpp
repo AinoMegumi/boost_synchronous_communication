@@ -6,8 +6,8 @@
 #undef  _WIN32_WINNT
 #define _WIN32_WINNT 0x0501
 #endif
-#include"Recept.h"
-#include<boost/bind.hpp>
+#include "Recept.h"
+#include <boost/bind.hpp>
 
 Recept::Recept(const std::string& ip, const unsigned short port_num) {
 	this->acceptor = boost::asio::ip::tcp::acceptor(this->io_service, boost::asio::ip::tcp::endpoint(boost::asio::ip::address::from_string(ip), port_num));
