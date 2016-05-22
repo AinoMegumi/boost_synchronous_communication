@@ -22,7 +22,7 @@ Recept::Recept(const unsigned short port_num) {
 }
 
 void Recept::recept(ConnectionType type) {
-	if (type == synchro) this->acceptor->accept(*this->socket);
+	if (type == ConnectionType::synchro) this->acceptor->accept(*this->socket);
 	else this->acceptor->async_accept(*this->socket, [](const boost::system::error_code& error) {
 		std::cout << ((!error) ? "connect success" : error.message()) << std::endl;
 	});

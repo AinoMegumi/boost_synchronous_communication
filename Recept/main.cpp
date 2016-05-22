@@ -12,7 +12,7 @@
 int main() {
 	try {
 		Recept recept("127.0.0.1", 128);
-		recept.recept(asynchro);
+		recept.recept(ConnectionType::asynchro);
 		std::string data = recept.get_data<std::string>();
 		std::cout << data << std::endl;
 		return 0;
