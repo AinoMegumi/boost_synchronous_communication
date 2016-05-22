@@ -26,7 +26,9 @@ Send::Send(ConnectionType type, std::ostringstream& ostr, const unsigned short p
 }
 
 bool Send::is_ipv4_address(const std::string& ip) {
-	std::regex reg(R"((\d{ 1,3 })\.(\d{ 1,3 })\.(\d{ 1,3 })\.(\d{ 1,3 }))"); // ここから謎のException
+	static const char reg_pattern[] = R"((\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3}))";
+	static_assert(43 == std::size(reg_pattern), "regex pattern is broken.");
+	static const std::regex reg(reg_pattern);
 	std::smatch match;
 	std::regex_search(ip, match, reg);
 	return (5 == match.size() &&
