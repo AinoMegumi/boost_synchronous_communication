@@ -6,7 +6,7 @@
 #include <boost/serialization/serialization.hpp>
 #include <boost/archive/binary_iarchive.hpp>
 
-enum class ConnectionType {
+enum ConnectionType {
 	synchro, asynchro
 };
 

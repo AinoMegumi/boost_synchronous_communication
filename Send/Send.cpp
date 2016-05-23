@@ -46,11 +46,11 @@ bool Send::is_ipv4_address(const std::string& ip) {
 void Send::send(const std::ostringstream& ostr) {
 	this->socket = ip::tcp::socket(this->io);
 	std::string buf = ostr.str();
-	if (this->type == synchro) {
+	/*if (this->type == synchro) {*/
 		this->socket->connect(*this->endpoint);
 		this->socket->send(boost::asio::buffer(buf.data(), buf.size()));
-	}
-	else {
+	//}
+	/*else {
 		this->socket->async_connect(*this->endpoint, [](const boost::system::error_code& error) {
 			std::cout << ((!error) ? "connect success" : error.message()) << std::endl;
 		});
@@ -60,5 +60,5 @@ void Send::send(const std::ostringstream& ostr) {
 				else std::cout << error.message() << std::endl;
 			}
 		);
-	}
+	}*/
 }

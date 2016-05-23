@@ -14,6 +14,7 @@ int main() {
 	try {
 		std::ostringstream ostr;
 		std::string str;
+		std::cout << "相手側のIPアドレスを入力してください。" << std::endl;
 		std::cin >> str;
 		Send s(asynchro, str, ostr, 120);
 		s.input_data<int>(15);
