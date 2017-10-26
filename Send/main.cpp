@@ -16,8 +16,9 @@ int main() {
 		std::string str;
 		std::cout << "相手側のIPアドレスを入力してください。" << std::endl;
 		std::cin >> str;
-		Send s(asynchro, str, ostr, 120);
-		s.input_data<int>(15);
+		Send s(str, ostr, 120);
+		s.input_data<std::string>("Hello World!");
+		s.input_data<std::string>("あいうえお");
 		s.send(ostr);
 		return 0;
 	}
