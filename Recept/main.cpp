@@ -15,8 +15,14 @@ int main() {
 		std::cout << "相手側のIPアドレスを入力してください。" << std::endl;
 		std::cin >> ip;
 		Recept recept(ip, 120);
-		recept.recept(ConnectionType::asynchro);
-		std::string data = recept.get_data<std::string>();
+		recept.recept();
+		std::string str = recept.GetData();
+		std::istringstream istr(str);
+		boost::archive::text_iarchive ia(istr);
+		std::string data;
+		ia >> data;
+		std::system("cls");
+
 		std::cout << data << std::endl;
 		return 0;
 	}
