@@ -13,14 +13,14 @@
 #include <iostream>
 using namespace boost::asio;
 
-Send::Send(ConnectionType type, const std::string& ip, std::ostringstream& ostr, const unsigned short port)
-	: type(type), oa(ostr) {
+Send::Send(const std::string& ip, std::ostringstream& ostr, const unsigned short port)
+	: oa(ostr) {
 	this->socket = ip::tcp::socket(this->io);
 	if (this->is_ipv4_address(ip)) this->endpoint = ip::tcp::endpoint(ip::address_v4::from_string(ip), port);
 	else throw std::runtime_error("IPv4以外の文字列が入力されました。");
 }
 
-Send::Send(ConnectionType type, std::ostringstream& ostr, const unsigned short port) : type(type), oa(ostr) {
+Send::Send(std::ostringstream& ostr, const unsigned short port) : oa(ostr) {
 	this->socket = ip::tcp::socket(this->io);
 	this->endpoint = ip::tcp::endpoint(ip::address::from_string("127.0.0.1"), port);
 }
@@ -46,19 +46,6 @@ bool Send::is_ipv4_address(const std::string& ip) {
 void Send::send(const std::ostringstream& ostr) {
 	this->socket = ip::tcp::socket(this->io);
 	std::string buf = ostr.str();
-	if (this->type == synchro) {
-		this->socket->connect(*this->endpoint);
-		this->socket->send(boost::asio::buffer(buf.data(), buf.size()));
-	}
-	else {
-		this->socket->async_connect(*this->endpoint, [](const boost::system::error_code& error) {
-			std::cout << ((!error) ? "connect success" : error.message()) << std::endl;
-		});
-		this->socket->async_send(boost::asio::buffer(buf.data(), buf.size()),
-			[](const boost::system::error_code& error, std::size_t size) {
-				if (!error) std::cout << "send success" << std::endl;
-				else std::cout << error.message() << std::endl;
-			}
-		);
-	}
+	this->socket->connect(*this->endpoint);
+	this->socket->send(boost::asio::buffer(buf.data(), buf.size()));
 }
